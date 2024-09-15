@@ -10,6 +10,7 @@ class DatabaseHelper {
       DatabaseHelper._createInstance(); // Singleton DatabaseHelper
   static Database? _database; // Singleton Database
 
+  /// key name
   String noteTable = 'note_table';
   String colId = 'id';
   String colTitle = 'title';
