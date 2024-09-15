@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_sqlite/application/notes/note_bloc.dart';
 import 'package:notes_sqlite/domain/core/error/database_failure.dart';
-import 'package:notes_sqlite/presentation/notes/core/custom_snackbar.dart';
+import 'package:notes_sqlite/presentation/core/custom_snackbar.dart';
 import 'package:notes_sqlite/presentation/notes/notes_details.dart';
 import 'package:notes_sqlite/presentation/notes/widget/notes_tile.dart';
 import 'package:skeletonizer/skeletonizer.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_sqlite/application/notes/note_bloc.dart';
 import 'package:notes_sqlite/domain/notes/entities/note.dart';
-import 'package:notes_sqlite/presentation/notes/core/custom_snackbar.dart';
+import 'package:notes_sqlite/presentation/core/custom_snackbar.dart';
 
 class NotesDetailsScreen extends StatelessWidget {
   final Note? note;
