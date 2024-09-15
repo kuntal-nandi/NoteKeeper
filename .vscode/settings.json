@@ -1,0 +1,8 @@
+ {
+ // Hide the file from explorer
+  "files.exclude": {
+    "**/*.freezed.dart": true,
+    "**/*.g.dart": true,
+    "**/*.gr.dart": true
+  }
+}
