@@ -19,6 +19,7 @@ class NotesDetailsScreen extends StatelessWidget {
       descriptionController.text = note!.description;
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(note != null ? 'Edit Note' : 'Add Note'),
         automaticallyImplyLeading: false,
@@ -110,6 +111,7 @@ class NotesDetailsScreen extends StatelessWidget {
                   ),
                   TextFormField(
                     controller: descriptionController,
+                    keyboardType: TextInputType.text,
                     maxLines: 5, // Allows the TextField to expand to 5 lines
                     decoration: InputDecoration(
                       labelText: 'Description',

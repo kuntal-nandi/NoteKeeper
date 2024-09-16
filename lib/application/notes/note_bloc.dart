@@ -117,7 +117,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
           state.copyWith(
             isFetching: false,
             isLoading: false,
-            dbFailureOrSuccessOption: none(),
+            dbFailureOrSuccessOption: optionOf(const Right('delete')),
           ),
         );
         add(const _Fetch());

@@ -19,10 +19,27 @@ class NotesPage extends StatelessWidget {
       ),
       body: BlocConsumer<NoteBloc, NoteState>(
         listener: (context, state) {
-          CustomSnackbar.showErrorMessage(context, 'Note deleted successfully');
+          state.dbFailureOrSuccessOption.fold(
+              () => null,
+              (option) => option.fold((left) {
+                    CustomSnackbar.showErrorMessage(
+                        context, left.failureMessage);
+                  }, (right) {
+                    if (right == 'add') {
+                      CustomSnackbar.showSuccessMessage(
+                          context, 'Note added successfully');
+                    } else if (right == 'edit') {
+                      CustomSnackbar.showSuccessMessage(
+                          context, 'Note updated successfully');
+                    } else if (right == 'delete') {
+                      CustomSnackbar.showErrorMessage(
+                          context, 'Note deleted successfully');
+                    }
+                  }));
         },
         listenWhen: (previous, current) =>
-            current.noteList.length < previous.noteList.length,
+            previous.dbFailureOrSuccessOption !=
+            current.dbFailureOrSuccessOption,
         builder: (context, state) {
           if (state.isFetching) {
             return const Center(
@@ -40,39 +57,18 @@ class NotesPage extends StatelessWidget {
             );
           }
           return SingleChildScrollView(
-            child: BlocListener<NoteBloc, NoteState>(
-              listener: (context, state) {
-                state.dbFailureOrSuccessOption.fold(
-                    () => null,
-                    (option) => option.fold((left) {
-                          CustomSnackbar.showErrorMessage(
-                              context, left.failureMessage);
-                        }, (right) {
-                          if (right == 'add') {
-                            CustomSnackbar.showSuccessMessage(
-                                context, 'Note added successfully');
-                          } else if (right == 'edit') {
-                            CustomSnackbar.showSuccessMessage(
-                                context, 'Note updated successfully');
-                          }
-                        }));
-              },
-              listenWhen: (previous, current) =>
-                  previous.dbFailureOrSuccessOption !=
-                  current.dbFailureOrSuccessOption,
-              child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Skeletonizer(
-                    enabled: state.isLoading,
-                    child: Column(
-                      children: state.noteList
-                          .map((e) => NotesTile(
-                                note: e,
-                              ))
-                          .toList(),
-                    ),
-                  )),
-            ),
+            child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Skeletonizer(
+                  enabled: state.isLoading,
+                  child: Column(
+                    children: state.noteList
+                        .map((e) => NotesTile(
+                              note: e,
+                            ))
+                        .toList(),
+                  ),
+                )),
           );
         },
       ),
