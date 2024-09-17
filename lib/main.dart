@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_sqlite/application/notes/note_bloc.dart';
 import 'package:notes_sqlite/infrastructure/notes/datasources/notes_remote.dart';
-import 'package:notes_sqlite/infrastructure/notes/repository/note_repository.dart';
+import 'package:notes_sqlite/infrastructure/notes/repository/notes_repository.dart';
 import 'package:notes_sqlite/presentation/notes/notes_page.dart';
 import 'package:notes_sqlite/utils/database_helper.dart';
 

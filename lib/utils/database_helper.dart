@@ -29,6 +29,7 @@ class DatabaseHelper {
     return _database!;
   }
 
+  /// [initialize Database with a local directory]
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS to store database.
     Directory directory = await getApplicationDocumentsDirectory();
@@ -40,14 +41,14 @@ class DatabaseHelper {
     return notesDatabase;
   }
 
-  /// create SQL database
+  /// [ create SQL database ]
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
         '$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)');
   }
 
-  // Fetch Operation: Get all note objects from database
+  /// [Fetch Operation: Get all note objects from database]
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
     Database db = await database;
 
@@ -58,14 +59,14 @@ class DatabaseHelper {
     return result;
   }
 
-  // Insert Operation: Insert a Note object to database
+  /// [Insert Operation: Insert a Note object to database]
   Future<int> insertNote(Note note) async {
     Database db = await database;
     var result = await db.insert(noteTable, note.toMapObject);
     return result;
   }
 
-  // Update Operation: Update a Note object and save it to database
+  /// [Update Operation: Update a Note object and save it to database]
   Future<int> updateNote(Note note) async {
     var db = await database;
     var result = await db.update(noteTable, note.toMapObject,
@@ -73,7 +74,7 @@ class DatabaseHelper {
     return result;
   }
 
-  // Delete Operation: Delete a Note object from database
+  /// [Delete Operation: Delete a Note object from database]
   Future<int> deleteNote(int id) async {
     var db = await database;
     int result =
@@ -81,7 +82,7 @@ class DatabaseHelper {
     return result;
   }
 
-  // Get number of Note objects in database
+  /// [Get number of Note objects in database]
   Future<int> getCount() async {
     Database db = await database;
     List<Map<String, dynamic>> x =
@@ -90,7 +91,7 @@ class DatabaseHelper {
     return result;
   }
 
-  // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
+  /// [Get the 'Map List'  List<Map>  and convert it to 'Note List' List<Note> ]
   Future<List<Note>> getNoteList() async {
     var noteMapList = await getNoteMapList(); // Get 'Map List' from database
 

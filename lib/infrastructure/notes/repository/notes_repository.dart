@@ -6,7 +6,7 @@ import 'package:notes_sqlite/domain/notes/entities/note.dart';
 import 'package:notes_sqlite/infrastructure/notes/datasources/notes_remote.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../../domain/notes/repository/i_notes_repositort.dart';
+import '../../../domain/notes/repository/i_notes_repository.dart';
 
 class NotesRepository implements INotesRepository {
   final NotesRemoteDataSource remoteDataSource;
